@@ -12,7 +12,7 @@
 
   <h1>Whack-a-mole! <span class="score">0</span></h1>
 
-  <div id="timer">10:00</div>
+  <div id="timer"></div>
 
   <div class="game">
     <div class="hole hole1">
@@ -50,6 +50,12 @@
   let timeUp = false;
   let score = 0;
 
+  const duration = 10; //seconds
+  const startTime = duration + '.00'
+  const timer = document.querySelector('#timer');
+  timer.textContent = startTime;
+  let countdown;
+
   function randomTime(min, max){ 
     return Math.round(Math.random()*(max-min)+min);
   }
@@ -82,7 +88,8 @@
     reset();
     timeUp = false;
     peep();
-    setTimeout(() => timeUp = true, 10000);
+    startTimer();
+    setTimeout(() => timeUp = true, duration*1000);
   }
 
   function bonk(e){
@@ -98,14 +105,35 @@
   	scoreBoard.textContent = 0;
     timeUp = true;
     score = 0;
+    clearInterval(countdown);
+    timer.textContent = startTime;
   }
-  /*
-  Other ideas:
-  -save high scores in local storage
-  -different difficulty levels
-  -penalty for misclicking
-  -display countdown timer
-  */
+
+  function startTimer(){
+	//clear any existing timers to prevent problems that arise when multiple buttons clicked to set a timer
+	clearInterval(countdown);
+
+	let msLeft = duration * 1000;
+
+	countdown = setInterval(() => {
+		msLeft = msLeft - 10; 
+
+		//check when to stop
+		if(msLeft<0){
+			clearInterval(countdown); //stops timer
+			return; //cannot just return as timer will still keep going, just not display anything
+		}
+
+		//display time
+		timer.textContent = convertTime(msLeft);
+	}, 10);
+ }
+  
+
+  function convertTime(ms){
+  	const time = (ms/1000).toFixed(2);
+  	return `${time<10? '0':''}${time}`;
+  }
 
 </script>
 </body>
