@@ -67,3 +67,58 @@ h1 {
 .hole.up .mole {
   top: 0;
 }
+
+#control{
+  width: 20%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons{
+  min-width: 120px;
+  margin: 10px;
+  padding: 10px;
+  font-family: 'Unkempt', cursive;
+  font-size: 30px;
+  border-radius: 25%;
+  border: 2px solid yellow;
+}
+
+.buttons:focus{
+    outline: 0px;
+  }
+.buttons:active{
+    opacity: 0.7;
+    border: 2px solid hsl(0, 100%, 40%);
+  }
+
+#start{
+  background-color: green;
+  color: white;
+}
+#reset{
+  background-color: hsl(24, 100%, 50%);
+  color: white;
+}
+
+#timer{
+  font-size: 50px;
+  font-family: 'Orbitron', sans-serif;
+  width: 20%;
+  min-width: 200px;
+  margin: 20px auto;
+  padding: 10px;
+  text-align: center;
+  background-color: black;
+  color: yellow;
+  border: 1px solid red;
+}
+
+#footer{
+  font-size: 18px;
+  font-family: Arial;
+  width: 60%;
+  margin: 5px auto;
+  text-align: center;
+}
